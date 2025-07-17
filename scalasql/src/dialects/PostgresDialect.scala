@@ -42,6 +42,14 @@ trait PostgresDialect extends Dialect with ReturningDialect with OnConflictOps {
   implicit def ExprAggOpsConv[T](v: Aggregatable[Expr[T]]): operations.ExprAggOps[T] =
     new PostgresDialect.ExprAggOps(v)
 
+  implicit def ArrayInterpConv[T](v: Seq[T])(implicit conv: T => SqlStr.Interp): SqlStr.Interp =
+    sql"Array[${
+      SqlStr.join(
+        v.map(e => sql"${conv(e)}"),
+        SqlStr.commaSep
+      )
+    }]"
+
   implicit class SelectDistinctOnConv[Q, R](r: Select[Q, R]) {
 
     /**

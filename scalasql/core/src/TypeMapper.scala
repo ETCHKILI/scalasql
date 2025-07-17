@@ -29,7 +29,7 @@ import java.util.UUID
  * Defaults are provided for most common Scala primitives, but you can also provide
  * your own by defining an `implicit val foo: TypeMapper[T]`
  */
-trait TypeMapper[T] { outer =>
+trait TypeMapper[T] extends ResultGetter[T] { outer =>
 
   /**
    * The JDBC type of this type.

@@ -76,7 +76,7 @@ object Queryable {
       result
     }
 
-    def get[T](mt: TypeMapper[T]) = {
+    def get[T](mt: ResultGetter[T]) = {
       index += 1
       val res = mt.get(r, index)
       if (r.wasNull()) nulls += 1

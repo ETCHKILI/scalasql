@@ -4,6 +4,7 @@ import scalasql._
 import scalasql.core.Expr
 import utest._
 import utils.PostgresSuite
+import sourcecode.Text
 
 trait PostgresDialectTests extends PostgresSuite {
   def description = "Operations specific to working with Postgres Databases"
@@ -100,6 +101,18 @@ trait PostgresDialectTests extends PostgresSuite {
     test("random") - checker(
       query = db.random,
       sql = "SELECT RANDOM() AS res"
+    )
+
+    test("array") - checker(
+      query = Text {
+
+      },
+      sql = ???,
+      sqls = ???,
+      value = ???,
+      moreValues = ???,
+      normalize = ???,
+      docs = ???
     )
   }
 }
